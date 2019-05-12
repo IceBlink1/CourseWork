@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="CsvFileLibrary.CsvFile">
+    <Position X="0.5" Y="6" Width="4.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="RegressionLib.AbstractRegression">
+    <Position X="18" Y="0.5" Width="3.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="RegressionLib.ExponentialRegression">
+    <Position X="18.5" Y="8" Width="3.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="RegressionLib.CubicRegression">
+    <Position X="7.25" Y="4.25" Width="3.25" />
+    <TypeIdentifier />
+    <ShowAsAssociation>
+      <Property Name="System" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="RegressionLib.HyperbolicRegression">
+    <Position X="14.75" Y="8" Width="3.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="RegressionLib.LinearRegression">
+    <Position X="19.5" Y="4" Width="3.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="RegressionLib.LogarifmicRegression">
+    <Position X="10.75" Y="8" Width="3.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="RegressionLib.SystemOfLinearEquations">
+    <Position X="8.25" Y="6.25" Width="4" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="RegressionLib.RegressionContainer">
+    <Position X="8.75" Y="1" Width="8" />
+    <TypeIdentifier />
+    <ShowAsAssociation>
+      <Property Name="Regression" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="UI.MainWindow">
+    <Position X="0.5" Y="0.5" Width="6.5" />
+    <AssociationLine Name="CsvFile" Type="CsvFileLibrary.CsvFile">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="-0.244" Y="0.11" Height="0.182" Width="0.724" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="RegressionContainer" Type="RegressionLib.RegressionContainer">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="0.052" Y="0.101" Height="0.182" Width="1.394" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>hAEEAAEAAAAAIAAIACACQACIQAAMAAIAAAAAAAAAUAQ=</HashCode>
+      <FileName>MainWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="CsvFile" />
+      <Property Name="RegressionContainer" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="RegressionLib.SquareRegression">
+    <Position X="10.75" Y="4.25" Width="3.5" />
+    <TypeIdentifier />
+    <ShowAsAssociation>
+      <Property Name="system" />
+    </ShowAsAssociation>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
