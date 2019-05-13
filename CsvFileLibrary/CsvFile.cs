@@ -13,6 +13,9 @@ namespace CsvFileLibrary
     /// </summary>
     public class CsvFile
     {
+        /// <summary>
+        /// Empty contructor for saving *.csv file
+        /// </summary>
         public CsvFile() { }
         /// <summary>
         /// Reads fields of the input file

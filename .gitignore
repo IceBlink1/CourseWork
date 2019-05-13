@@ -259,3 +259,9 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+/data/2019-5-12-ACAMW.csv
+/data/2019-5-12-ACTTU.csv
+/data/2019-5-12-AIRG.csv
+/data/2019-5-12-ALGN.csv
+/data/2019-5-12-PIH.csv
+/data

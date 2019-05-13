@@ -121,7 +121,7 @@ namespace UI
                 MessageBox.Show("Неверный ввод данных для предсказания");
                 return;
             }
-
+            baseDays = Math.Min(baseDays, file.Fields[0].Count);
             Array.Resize(ref xVals, baseDays);
 
             double[] yValsConv = new double[baseDays];
@@ -130,7 +130,16 @@ namespace UI
                 yValsConv[i - yVals.Length + baseDays] = yVals[i];
             }
 
-            GetRegressionsList(xVals, yValsConv, file, predictDays, name);
+            try
+            {
+                GetRegressionsList(xVals, yValsConv, file, predictDays, name);
+            }
+            catch (ArgumentException)
+            {
+                MessageBox.Show("Не удалось предсказать котировки по скачанным данным, попробуйте другую компанию");
+                ClearButton_Click(this, new RoutedEventArgs());
+                return;
+            }
 
             if (OutputCheck.IsChecked == true)
             {
@@ -155,8 +164,8 @@ namespace UI
                 AbstractRegression bestRegression =
                     regressions.Where(rc => Math.Abs(rc.Regression.correlationCoefficient - bestCorreliation)
                     < double.Epsilon).ToList()[0].Regression;
-                MessageBox.Show($"Основываясь на лучшей модели предсказания: {bestRegression.ToString()} с коэффициентом корреляции {bestCorreliation:f5}. " +
-                    $"Вы можете заработать {-bestRegression.yVals[bestRegression.yVals.Length - 1] + bestRegression.PredictY(xVals.Length + 2):f5}, если вложитесь сейчас и продадите акции через" +
+                MessageBox.Show($"Основываясь на лучшей модели предсказания: {bestRegression.ToString()} с коэффициентом корреляции {bestCorreliation:f5}, " +
+                    $"вы можете заработать ${-bestRegression.yVals[bestRegression.yVals.Length - 1] + bestRegression.PredictY(xVals.Length + 2):f5} за каждую акцию, если вложитесь сейчас и продадите акции через" +
                     $" {predictDays} дней");
             }
         }
@@ -181,8 +190,8 @@ namespace UI
                         webClient.DownloadFile(request + name
                             + $"&apikey={token}&datatype=csv", path);
                     }
+                    ClearButton_Click(this, new RoutedEventArgs());
                 }
-                ClearButton_Click(this, new RoutedEventArgs());
                 file = new CsvFile(path);
             }
             catch (IOException ex)
@@ -359,7 +368,7 @@ namespace UI
             }
             companyChanged = false;
         }
-        
+
         /// <summary>
         /// Clearing canvas 
         /// </summary>

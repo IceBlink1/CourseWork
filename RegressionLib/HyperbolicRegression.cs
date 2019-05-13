@@ -33,7 +33,7 @@ namespace RegressionLib
         /// <summary>
         /// Replaces xVals[i] with 1/xVals[i]
         /// </summary>
-        /// <param name="yVals"></param>
+        /// <param name="xVals"></param>
         /// <returns></returns>
         protected override double[] GetConvertedX(double[] xVals)
         {
