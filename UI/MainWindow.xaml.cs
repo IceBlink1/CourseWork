@@ -237,6 +237,8 @@ namespace UI
         /// <param name="name"></param>
         private void GetRegressionsList(double[] xVals, double[] yValsConv, CsvFile file, int predictDays, string name)
         {
+            regressions.Clear();
+            PlotCanvas.Children.Clear();
             AbstractRegression regression;
             Brush brush = null;
             if (ExponentialCheck.IsChecked == true)
