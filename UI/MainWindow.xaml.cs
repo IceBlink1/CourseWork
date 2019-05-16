@@ -224,7 +224,7 @@ namespace UI
         /// <returns></returns>
         private bool TryParseTextBoxes(ref int baseDays, ref int predictDays)
         {
-            return int.TryParse(BaseTextBox.Text, out baseDays) && int.TryParse(PredictTextBox.Text, out predictDays);
+            return int.TryParse(BaseTextBox.Text, out baseDays) && int.TryParse(PredictTextBox.Text, out predictDays) && predictDays > 0 && baseDays > 0;
         }
 
         /// <summary>
