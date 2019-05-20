@@ -147,9 +147,16 @@ namespace UI
                 {
                     Filter = "Comma separated file (*.csv)|*.csv"
                 };
-                if (fileDialog.ShowDialog() == true)
+                try
                 {
-                    file.Save(fileDialog.FileName, regressions);
+                    if (fileDialog.ShowDialog() == true)
+                    {
+                        file.Save(fileDialog.FileName, regressions);
+                    }
+                }
+                catch(IOException)
+                {
+                    MessageBox.Show("Не удалось получить доступ к файлу по указанному пути");
                 }
             }
 

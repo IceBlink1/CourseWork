@@ -59,6 +59,7 @@ namespace CsvFileLibrary
         {
             using (StreamWriter s = new StreamWriter(path))
             {
+                s.WriteLine(regressions[0].CompanyName+";");
                 s.WriteLine("Dates;" + string.Join(";", regressions.ConvertAll(rc => rc.Regression.ToString())));
                 s.WriteLine("Approximation Error;" + string.Join(";", regressions.ConvertAll(rc => rc.Regression.approximationError.ToString("f4"))));
                 s.WriteLine("Correlation Coefficient;" + string.Join(";", regressions.ConvertAll(rc => rc.Regression.correlationCoefficient.ToString("f4"))));
