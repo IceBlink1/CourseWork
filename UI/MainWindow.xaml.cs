@@ -45,6 +45,7 @@ namespace UI
         /// <summary>
         /// true if selection changed, false otherwise
         /// </summary>
+        private const int MAX_PREDICT_DAYS = 200;
         private bool companyChanged = true;
         /// <summary>
         /// request to the alphavantage api
@@ -80,21 +81,6 @@ namespace UI
             checkBoxes.Add(CubicCheck);
         }
 
-        public CsvFile CsvFile
-        {
-            get => default(CsvFile);
-            set
-            {
-            }
-        }
-
-        public RegressionContainer RegressionContainer
-        {
-            get => default(RegressionContainer);
-            set
-            {
-            }
-        }
         /// <summary>
         /// Downloading data, making regression list, drawing
         /// </summary>
@@ -160,12 +146,13 @@ namespace UI
                 }
             }
 
-            TopXLabel.Content = file.Fields[0][0];
-            BottomXLabel.Content = file.Fields[0][baseDays - 1];
-            MiddleXLabel.Content = file.Fields[0][baseDays / 2];
-
+            
             if (regressions.Count != 0)
             {
+                TopXLabel.Content = file.Fields[0][0];
+                BottomXLabel.Content = file.Fields[0][baseDays - 1];
+                MiddleXLabel.Content = file.Fields[0][baseDays / 2];
+
                 DrawPoints(regressions[regressions.Count - 1]);
                 double bestCorreliation = regressions.Max(rc => rc.Regression.correlationCoefficient);
                 AbstractRegression bestRegression =
@@ -231,7 +218,7 @@ namespace UI
         /// <returns></returns>
         private bool TryParseTextBoxes(ref int baseDays, ref int predictDays)
         {
-            return int.TryParse(BaseTextBox.Text, out baseDays) && int.TryParse(PredictTextBox.Text, out predictDays) && predictDays > 0 && baseDays > 0;
+            return int.TryParse(BaseTextBox.Text, out baseDays) && int.TryParse(PredictTextBox.Text, out predictDays) && predictDays > 0 && baseDays > 0 && predictDays <= MAX_PREDICT_DAYS;
         }
 
         /// <summary>
@@ -252,7 +239,7 @@ namespace UI
             {
                 regression = new ExponentialRegression(xVals, yValsConv);
                 brush = Brushes.Gold;
-                regressions.Add(new RegressionContainer(regression, predictDays, 0, file.Fields[0], name));//TODO: make enum for brush keys
+                regressions.Add(new RegressionContainer(regression, predictDays, 0, file.Fields[0], name));
                 DrawPlot(regressions[regressions.Count - 1]);
             }
             if (LogarifmicCheck.IsChecked == true)
